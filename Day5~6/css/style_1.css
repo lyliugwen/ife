@@ -1,0 +1,25 @@
+
+body{
+	font-family: 微软雅黑,sans-serif;
+	}
+dl{
+
+}
+dt{
+
+	font-weight: bold;
+}
+dd{
+	margin-left: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#jbxx dt,#jbxx dd,#lxfs dt,#lxfs dd{
+	display: inline-block;
+}
+#jbxx dd,#lxfs dd{
+	margin-left: 10px;
+	margin-right: 30px;
+	margin-top: 0;
+	margin-bottom: 0;
+}

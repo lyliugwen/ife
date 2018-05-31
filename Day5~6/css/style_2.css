@@ -1,0 +1,47 @@
+body {
+	font-family: Arial, "Microsoft YaHei", sans-serif;
+}
+#tit {
+	float: left;
+	width: 145px;
+	height: 750px;
+	padding-top: 25px;
+	padding-left:57px;
+	color: white;
+	font-size: 20px;
+	background-color: #65a5fa;
+}
+
+h2 {
+	margin-top: 0;
+	margin-left: 230px;
+	font-size: 26px;
+}
+dl {
+	width: 800px;
+	margin-left: 230px;
+	font-size: 18px;
+}
+dd {
+	margin-left: 0px;
+}
+dt{
+	font-weight: 700;
+}
+dd + dt {
+	margin-top: 15px;
+}
+#jbxx h2 {
+	padding-top: 20px;
+}
+#jbxx dt,
+#lxfs dt {
+	display: inline-block;
+	margin-top: 0;
+}
+#jbxx dd,
+#lxfs dd {
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 30px;
+}
