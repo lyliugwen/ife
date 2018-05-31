@@ -1,0 +1,146 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>设计稿</title>
+		<style>
+		body {
+			font-family:  Arial sans-serif;
+		}
+			header {
+				width: 100%;
+				height: 80px;
+				background-color: #333333;
+				position: relative;
+				padding: 0;
+
+			}
+			header h2 {
+				color: white;
+				position: absolute;
+				top: 10px;
+				left: 100px;
+			}
+			#hnav {
+				margin-right: 5%;
+				position: absolute;
+				min-width: 80px;
+				right: 0px;
+				
+			}
+			#hnav li {
+				display: inline-block;
+				vertical-align: top;
+				margin: 0 5px;
+			}
+			li a {
+				color: white;
+			}
+			#banner {
+				width: 100%;
+				height: 300px;
+				background-color: #66bb33;
+			}
+			nav {
+				width: 100%;
+				height: 70px;
+				border-bottom: 1px solid gray;
+				position: relative;
+				overflow: hidden;
+			}
+			#choose {
+				display: inline-block;
+				vertical-align: top;
+				background-color: white;
+				width: 100px;
+				text-align: center;
+				padding: 15px 0;
+				border: 1px solid black;
+				border-bottom: 1px solid white;
+				border-radius: 15px 15px 0 0;
+			}
+			#nochoose {
+				display: inline-block;
+				vertical-align: top;
+				background-color: #eeeeee;
+				width: 100px;
+				text-align: center;	
+				padding: 15px 0;			
+				border: 1px solid gray;
+				border-radius: 15px 15px 0 0;
+			}
+			#nnav li {
+				margin: -3px;
+				list-style-type: none;
+			}
+			nav ul {
+				padding: 0;
+				margin: 0;
+				position: absolute;
+				top: 23.5px;
+				left: 150px;
+				min-width: 400px;
+			}
+			#container {
+				width: 100%;
+				text-align: center;
+			}
+			.con {
+				border: 1px solid black;
+				line-height: 10;
+				margin-right: 10px;
+				flex: 1;
+			}
+			.line .con:last-child {
+				margin-right: 0;
+			}
+			.line {
+				display: flex;
+				margin: 10 145px 0;
+				min-width: 500px;
+
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<header>
+			<h2>Logo</h2>
+			<ul id="hnav">
+				<li><a href="#">Github</a></li>
+				<li><a href="#">Register</a></li>
+				<li><a href="#">Login</a></li>
+			</ul>
+		</header>
+		<div id="banner">
+			
+		</div>
+		<nav>
+		<ul id="nnav">
+			<li id="choose">HOME</li>
+			<li id="nochoose">PROFILE</li>
+			<li id="nochoose">ABOUT</li>
+		</ul>			
+		</nav>
+		<div id="container">
+			<div class="line">
+			<div id="content1" class="con">This is Content 1</div>
+			<div id="content2" class="con">MaybeContent 2</div>
+			<div id="content3" class="con">Content 3</div>
+			</div>
+			<div class="line">
+			<div id="content4" class="con">Content4</div>
+			<div id="content5" class="con">Content5</div>
+			<div id="content6" class="con">Content6</div>
+			<div id="content7" class="con">Content7</div>
+			</div>
+			<div class="line">
+			<div id="content8" class="con">Content8</div>
+			<div id="content9" class="con">Content9</div>
+			<div id="content10" class="con">Content10</div>
+			</div>
+		</div>
+		<footer></footer>
+	</body>
+</html>
+				
