@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>九九乘法表</title>
+	<style>
+		table td{
+			border: 1px solid black;
+			width: 100px;
+			text-align: center;
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<div id="panel">
+		<table id="jiujiu"></table>
+	</div>
+</body>
+<script>
+	var table=document.getElementById('jiujiu');
+	var n=1;
+	var m=1;
+	var t=1;
+	for (;m<=9; m++) {
+		var tableTR=document.createElement('tr');
+		table.appendChild(tableTR);
+		for(n=1;n<=m;n++){
+			t=n*m;
+			var tableTD=document.createElement('td');
+			tableTD.textContent=n+"*"+m+"="+t;
+			tableTR.appendChild(tableTD);
+		}
+		for(;n<=9;n++){
+			var tableTD=document.createElement('td');
+			tableTD.textContent=" ";
+			tableTD.style.border='none';
+			tableTR.appendChild(tableTD);
+		}
+	}
+</script>
+</html>
