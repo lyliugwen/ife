@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="keywords" content="百度, 百度前端, 百度前端学院, 百度前端技术学院, 前端, 前端开发, web前端, 前端开发工程师, CSS, JavaScript, HTML, Web标准"><meta name="description" content="百度前端技术学院是面向大学生的前端技术学习平台，由百度创办的免费前端技术学习实践、交流、分享平台"><link rel="shortcut icon" href="//ife.baidu.com/2018/asset/common/img/favicon_24c70cf.ico" type="image/x-icon"><link rel="icon" href="//ife.baidu.com/2018/asset/common/img/favicon_24c70cf.ico" type="image/x-icon"><link rel="bookmark" href="//ife.baidu.com/2018/asset/common/img/favicon_24c70cf.ico" type="image/x-icon">
 
 
-
+<h1>Day19</h1>
 <h3 id="-">编码</h3>
 <p>查找元素练习</p>
 <pre><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
