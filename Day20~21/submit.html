@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<input id="name" type="text">    
+	<button id="submit-btn">Submit</button>
+	<script>
+		var btn=document.getElementById('submit-btn');
+		var text=document.getElementById('name');
+		function btnSubmit(){
+		  console.log(text.value);
+		}
+		function dependCode(){
+		  if(event.keyCode==13){
+		    btnSubmit();
+		  }
+		}
+		function delCode(){
+		  if(event.keyCode==27){
+		    text.value=null;
+		  }
+		}
+		btn.onclick=btnSubmit;
+		text.onkeydown=dependCode;
+		text.onkeydown=delCode;
+	</script>
+</body>
+</html>

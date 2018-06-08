@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>smile</title>
+		<style>
+			.smile{
+				margin: 0;
+				background-image: url(images/smile.jpg);
+				background-position-x: 0px;
+				background-position-y:-2px;
+				background-repeat: no-repeat;
+				height: 480px;
+				width: 480px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="smile">
+		</div>
+		<script>
+			var smilePic=document.querySelector('.smile');
+			var position=-2;
+			var t;
+			var m;
+			t=setInterval(changeSmile,100);
+			function changeSmile(){
+				position=position-480;
+				smilePic.style.backgroundPositionY=position+'px';
+				if (position<=-7680) {
+					clearInterval(t);
+					m=setInterval(backSmile,100);
+				}
+			}
+			function backSmile(){
+				position=position+480;
+				smilePic.style.backgroundPositionY=position+'px';
+				if (position>=-2) {
+					clearInterval(m);
+					t=setInterval(changeSmile,100);
+				}
+			}			
+		</script>
+	</body>
+</html>
