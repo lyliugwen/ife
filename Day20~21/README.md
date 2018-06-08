@@ -1,27 +1,6 @@
-﻿<html>
-<head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="keywords" content="百度, 百度前端, 百度前端学院, 百度前端技术学院, 前端, 前端开发, web前端, 前端开发工程师, CSS, JavaScript, HTML, Web标准"><meta name="description" content="百度前端技术学院是面向大学生的前端技术学习平台，由百度创办的免费前端技术学习实践、交流、分享平台"><link rel="shortcut icon" href="//ife.baidu.com/2018/asset/common/img/favicon_24c70cf.ico" type="image/x-icon"><link rel="icon" href="//ife.baidu.com/2018/asset/common/img/favicon_24c70cf.ico" type="image/x-icon"><link rel="bookmark" href="//ife.baidu.com/2018/asset/common/img/favicon_24c70cf.ico" type="image/x-icon">
-
-
-
-
-
-
-<title>第二十到第二十一天：让你和页面对话</title><link href="//ife.baidu.com/2018/asset/course/courseDetail_aio_c31a962.css" rel="stylesheet"><script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?d422e3cabaaaa7445e54622b97472bab";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-
-
-
-
-
-</head><body>
-<main class="course-detail-main"><div class="course-detail-wrap card"><div class="course-basic-wrap row"><div class="course-img-wrap col-md-5"><div class="course-img" style="background-image: url(http://gss0.baidu.com/9rkZbzqaKgQUohGko9WTAnF6hhy/mms-res/fed/ife/ife_tutor/课程配图.3fb31f3e5af7e8d7.jpg)"></div></div><div class="course-info col-md-7"><div class="course-title-wrap row"><h2 class="course-title col-md-9 col-xs-6">第二十到第二十一天：让你和页面对话</h2><span class="level-tag course-level col-md-3 col-xs-6"><i class="top-slash"></i><i class="bottom-slash"></i>普通</span></div><div class="course-from"><a href="/mentor/detail/id/2"><i class="icon-course-teacher"></i>Varsha</a><span class="separator"></span><a href="/college/detail/id/5"><i class="icon-course-college"></i>零基础学院</a></div><p class="course-info-item course-status"><span class="key">人数</span>有<em>211</em>人在学习该课程，有<em>178</em>人已经完成该课程</p><p class="course-info-item course-learn-time"><span class="key">时间</span>平均用时<em>1.5</em>天</p><p class="course-info-item course-keywords"><span class="key">关键词</span><span class="tag">JavaScript</span></p></div></div><h3 class="course-descr-title">课程概述</h3><div class="md-content-wrap course-descr"><p class="deadline-tip">作业提交截止时间：09-01</p><h1 id="-">第二十到第二十一天：让你和页面对话</h1>
+<html>
+<body>
+<h1 id="-">第二十到第二十一天：让你和页面对话</h1>
 <h2 id="-">课程目标</h2>
 <ul>
 <li>掌握 JavaScript 事件的概念，并能写出基本的事件相关的代码</li>
