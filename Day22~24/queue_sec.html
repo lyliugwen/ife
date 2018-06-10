@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>queue</title>
+</head>
+	<body>
+		<input id="queue-input" type="text">
+		<p id="queue-cont">队列内容：apple&lt;-pear</p>    
+		<button id="in-btn">入队</button>
+		<button id="out-btn">出队</button>
+		<button id="font-btn">打印队头元素内容</button>
+		<button id="empty-btn">判断队列是否为空</button>
+
+		<script>
+
+		var queue = ["apple", "pear"];
+		var input=document.querySelector('#queue-input');
+		var inBtn=document.querySelector('#in-btn');
+		var outBtn=document.querySelector('#out-btn');
+		var fontBtn=document.querySelector('#font-btn');
+		var emptyBtn=document.querySelector('#empty-btn');
+		var cont=document.querySelector('#queue-cont');
+		var newQueue;
+		inBtn.onclick=function(){
+			if(input.value==' '||!input.value){
+				cont.innerHTML='write something , please';
+			}else{
+				queue.push(input.value);
+				newQueue=queue.join('<-');
+				cont.innerHTML=newQueue;
+			}
+		}
+		outBtn.onclick=function(){
+			if(queue.length==0){
+				cont.innerHTML='There is nothing in queue';
+			}else{
+				queue.shift();
+				newQueue=queue.join('<-');
+				cont.innerHTML=newQueue;
+			}
+		}
+		fontBtn.onclick=function () {
+			if(queue.length==0){
+				cont.innerHTML='There is nothing in queue';
+			}else{
+				cont.innerHTML=queue[0];
+			}
+		}
+		emptyBtn.onclick=function () {
+			if(queue.length==0){
+				cont.innerHTML='This is an empty queue.';
+			}else{
+				cont.innerHTML='This is not an empty queue.';
+			}
+		}
+		</script>
+	</body>
+</html>

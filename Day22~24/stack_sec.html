@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>stack</title>
+</head>
+	<body>
+		<input id="stack-input" type="text">
+		<p id="stack-cont">栈内容：apple-&lt;pear</p>    
+		<button id="push-btn">进栈</button>
+		<button id="pop-btn">退栈</button>
+		<button id="font-btn">打印栈顶元素内容</button>
+		<button id="empty-btn">判断栈是否为空</button>
+
+		<script>
+
+		var stack = ["apple", "pear"];
+		var input=document.querySelector('#stack-input');
+		var pushBtn=document.querySelector('#push-btn');
+		var popBtn=document.querySelector('#pop-btn');
+		var fontBtn=document.querySelector('#font-btn');
+		var emptyBtn=document.querySelector('#empty-btn');
+		var cont=document.querySelector('#stack-cont');
+		var newStack;
+
+
+		pushBtn.onclick=function(){
+			if(input.value==' '||!input.value){
+				cont.innerHTML='write something , please';
+			}else{
+				stack.unshift(input.value);
+				newStack=stack.join('<-');
+				cont.innerHTML=newStack;
+			}
+		}
+		popBtn.onclick=function(){
+			if(stack.length==0){
+				cont.innerHTML='There is nothing in stack';
+			}else{
+				stack.shift();
+				newStack=stack.join('<-');
+				cont.innerHTML=newStack;
+			}
+		}
+		fontBtn.onclick=function () {
+			if(stack.length==0){
+				cont.innerHTML='There is nothing in stack';
+			}else{
+				cont.innerHTML=stack[0];
+			}
+		}
+		emptyBtn.onclick=function () {
+			if(stack.length==0){
+				cont.innerHTML='This is an empty stack.';
+			}else{
+				cont.innerHTML='This is not an empty stack.';
+			}
+		}
+		</script>
+	</body>
+</html>
