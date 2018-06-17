@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>滴答滴答</title>
+	</head>
+	<body>
+		<h1>Part one</h1>
+		<h3>open the console</h3>
+		<h1>Part two</h1>
+		<div id="show"></div>
+		<h1>Part three</h1>
+		<select id="year-select">
+	    </select>年
+
+	    <select id="month-select">
+	    </select>月
+
+	    <select id="day-select">
+	    </select>日
+
+	    <select id="hour-select">
+	    </select>时
+
+	    <select id="minute-select">
+	    </select>分
+
+	    <select id="second-select">
+	    </select>秒
+
+	    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+		<script>
+			//part one
+			function Go() {
+			    console.log("Go");
+			}
+
+			function GoSteps(n) {
+			    if (!isNaN(n)) {
+			    	if (n<0) {
+			    		n=0;
+			    	}else{
+			    		n=Math.floor(n);			    		
+			    	}
+			    }else if(n==''||typeof(n)=="undefined"){
+			    	n=1;
+			    }else if(n=='true'){
+			    	n=1;
+			    }else{
+			    	n=0;
+			    }
+			    while(n--){Go();}
+			    console.log("finish");
+			}
+
+			GoSteps(10); // Go 10次
+			GoSteps(1); // Go 1次
+			GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+			GoSteps(0);  // 0次
+			GoSteps(-1);  // 0次
+			GoSteps(1.4);  // Go 1次
+			GoSteps(1.6);  // Go 1次
+			GoSteps(-1);  // 0次
+			GoSteps(true);  // Go 1次
+			GoSteps(false);  // 0次
+			GoSteps("Test");  // 0次
+			GoSteps(NaN);  // 0次
+			GoSteps(null);  // 0次
+			//part two
+			var show=document.querySelector("#show");
+			function showTime(){
+				var myDate=new Date();
+				var whichYear=myDate.getFullYear();
+				var whichMon=myDate.getMonth()+1;
+				var whichDate=myDate.getDate();
+				var whichHour=myDate.getHours();
+				var whichMin=myDate.getMinutes();
+				var whichSec=myDate.getSeconds();
+				var h=changeHour(whichHour);
+				whichMon=changeForm(whichMon);
+				whichDate=changeForm(whichDate);
+				whichHour=changeForm(whichHour);
+				h=changeForm(h);				
+				whichMin=changeForm(whichMin);
+				whichSec=changeForm(whichSec);
+				show.innerHTML=whichYear+'年'+whichMon+'月'+whichDate+'日'+showHDay()+' '+whichHour+':'+whichMin+':'+whichSec+'<br>'+whichYear+'-'+whichMon+'-'+whichDate+' '+showDay()+' '+h+':'+whichMin+':'+whichSec+' '+dependTime(whichHour);
+				setTimeout(showTime,1000);
+			}
+			function changeHour(t){
+				t=t%12;
+				return t;
+			}
+			function dependTime(m) {
+				if(m>12){
+					return 'PM';
+				}else{
+					return 'AM';
+				}
+			}
+			function changeForm(m){
+				if (m<10) {
+					m='0'+m;
+				}
+				return m;
+			}
+			function showDay(){
+				var myDate=new Date();
+				var whichDay=myDate.getDay();
+				switch(whichDay){
+					case 0:
+					return 'Sunday';
+					bresk;
+					case 1:
+					return 'Monday';
+					bresk;
+					case 2:
+					return 'Tuesday';
+					bresk;
+					case 3:
+					return 'Wednesday';
+					bresk;
+					case 4:
+					return 'Thursday';
+					bresk;
+					case 5:
+					return 'Friday';
+					bresk;
+					case 6:
+					return 'Saturday';
+					bresk;
+					
+				}
+			}
+			function showHDay(){
+				var myDate=new Date();
+				var whichDay=myDate.getDay();
+				switch(whichDay){
+					case 0:
+					return '星期日';
+					bresk;
+					case 1:
+					return '星期一';
+					bresk;
+					case 2:
+					return '星期二';
+					bresk;
+					case 3:
+					return '星期三';
+					bresk;
+					case 4:
+					return '星期四';
+					bresk;
+					case 5:
+					return '星期五';
+					bresk;
+					case 6:
+					return '星期六';
+					bresk;
+					
+				}
+			}
+			showTime();
+			//part three
+			
+        var yearSel=document.querySelector('#year-select');
+        var monSel=document.querySelector('#month-select');
+        var dateSel=document.querySelector('#day-select');
+        var hourSel=document.querySelector('#hour-select');
+        var minSel=document.querySelector('#minute-select');
+        var secSel=document.querySelector('#second-select');
+        var result=document.querySelector('#result-wrapper');
+        var tId;
+        function addOption(m,n,sel) {
+            for(;m<=n;m++){
+                var newNode=document.createElement('option');
+                newNode.value=m;
+                newNode.innerHTML=m;
+                sel.appendChild(newNode);
+            }
+        }
+        addOption(2000,2032,yearSel);
+        addOption(1,12,monSel);
+        addOption(1,31,dateSel);
+        addOption(0,23,hourSel);
+        addOption(0,59,minSel);
+        addOption(0,59,secSel);
+        yearSel.onchange=function(){
+            selChange();
+            calcTime();
+        };
+        monSel.onchange=function(){
+            selChange();
+            calcTime();
+        };
+        dateSel.onchange=function(){
+            calcTime();
+        };
+        hourSel.onchange=function(){
+            calcTime();
+        };
+        minSel.onchange=function(){
+            calcTime();
+        };
+        secSel.onchange=function(){
+            calcTime();
+        };
+        function selChange(){
+            //获取year-select中的选中值
+            var yearSel=document.querySelector('#year-select');
+            var indexY=yearSel.selectedIndex;
+            var valueY=yearSel.options[indexY].value;
+             //获取month-select中的选中值
+             var monthSel=document.querySelector('#month-select');
+             var indexM=monthSel.selectedIndex;
+             var valueM=monthSel.options[indexM].value;
+             if (!valueY%100==0) {//判断闰年
+                if (valueY%4==0) {
+                    runYear(valueM);
+                }
+                else{pingYear(valueM);}
+             }else if(valueY%400==0){
+             runYear(valueM);                
+             }else{
+             pingYear(valueM);                
+             }
+        }
+        function pingYear(m) {
+                       if (m==2) {
+               var dateSel=document.querySelector('#day-select');
+                dateSel.options.length=0;
+                addOption(1,28,dateSel); 
+            }else if (m==1||m==3||m==5||m==7||m==8||m==10||m==12) {
+                var dateSel=document.querySelector('#day-select');
+                dateSel.options.length=0;
+                addOption(1,31,dateSel);
+            }else{
+               var dateSel=document.querySelector('#day-select');
+                dateSel.options.length=0;
+                addOption(1,30,dateSel); 
+            
+            }
+        }
+        function runYear(m) {
+                       if (m==2) {
+               var dateSel=document.querySelector('#day-select');
+                dateSel.options.length=0;
+                addOption(1,29,dateSel); 
+            }else if (m==1||m==3||m==5||m==7||m==8||m==10||m==12) {
+                var dateSel=document.querySelector('#day-select');
+                dateSel.options.length=0;
+                addOption(1,31,dateSel);
+            }else{
+               var dateSel=document.querySelector('#day-select');
+                dateSel.options.length=0;
+                addOption(1,30,dateSel); 
+            
+            }
+        }
+        function calcTime(){
+            var nowTime=new Date();
+            var chooseTime=new Date();
+            var yearValue=nowValue(yearSel);
+            var monValue=nowValue(monSel);
+            var dateValue=nowValue(dateSel);
+            var hourValue=nowValue(hourSel);
+            var minValue=nowValue(minSel);
+            var secValue=nowValue(secSel);
+            chooseTime.setFullYear(yearValue,monValue-1,dateValue);
+            chooseTime.setHours(hourValue);
+            chooseTime.setMinutes(minValue);
+            chooseTime.setSeconds(secValue);            
+            var dayValue=showDay(chooseTime.getDay());
+            var calcResult=nowTime-chooseTime;
+            if (calcResult<0) {
+                calcResult=-calcResult;
+                result.innerHTML="现在距离 "+yearValue+"年"+monValue+"月"+dateValue+"日"+dayValue+hourValue+":"+minValue+":"+secValue+" 还有"+calcDay(calcResult)+"天"+calcHour(calcResult)+"小时" +calcMin(calcResult)+"分"+calcSec(calcResult)+"秒";
+            }else{
+                result.innerHTML="现在距离 "+yearValue+"年"+monValue+"月"+dateValue+"日"+dayValue+hourValue+":"+minValue+":"+secValue+" 已经过去"+calcDay(calcResult)+"天"+calcHour(calcResult)+"小时" +calcMin(calcResult)+"分"+calcSec(calcResult)+"秒";
+            }
+            if (tId) {
+                clearTimeout(tId);
+                tId=setTimeout(calcTime,1000);
+            }else{
+                tId=setTimeout(calcTime,1000);
+            }
+        }
+        //输出时间计算
+        function calcDay(result){
+            var d=result/86400000;
+            d=Math.floor(d);
+            return d;
+        }
+        function calcHour(result){
+            var d=result%86400000;
+            var h=d/3600000;
+            h=Math.floor(h);            
+            return h;
+        }
+        function calcMin(result){
+            var d=result%86400000;
+            var h=d%3600000;
+            var m=h/60000;
+            m=Math.floor(m);            
+            return m;
+        } 
+        function calcSec(result){
+            var d=result%86400000;
+            var h=d%3600000;
+            var m=h%60000;
+            var s=m/1000;
+            s=Math.floor(s);            
+            return s;
+        } 
+        // 返回selected值            
+        function nowValue(obj){//获取值函数
+            var indexM=obj.selectedIndex;
+            var valueM=obj.options[indexM].value;
+            return valueM;
+        }
+        //星期计算
+        function showDay(d){
+                switch(d){
+                    case 0:
+                    return '星期日';
+                    bresk;
+                    case 1:
+                    return '星期一';
+                    bresk;
+                    case 2:
+                    return '星期二';
+                    bresk;
+                    case 3:
+                    return '星期三';
+                    bresk;
+                    case 4:
+                    return '星期四';
+                    bresk;
+                    case 5:
+                    return '星期五';
+                    bresk;
+                    case 6:
+                    return '星期六';
+                    bresk;
+                    
+                }
+            }
+
+		</script>
+	</body>
+</html>
