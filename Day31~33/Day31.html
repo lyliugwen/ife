@@ -1,0 +1,305 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MIS</title>
+        <style>
+            table{
+                border:1px solid black;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="region-radio-wrapper"></div>
+        <div id="product-radio-wrapper"></div>
+        <div id="table-wrapper">
+            
+        </div>
+        <script>
+            
+            let sourceData = [{
+                product: "手机",
+                region: "华东",
+                sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+            }, {
+                product: "手机",
+                region: "华北",
+                sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+            }, {
+                product: "手机",
+                region: "华南",
+                sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+            }, {
+                product: "笔记本",
+                region: "华东",
+                sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+            }, {
+                product: "笔记本",
+                region: "华北",
+                sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+            }, {
+                product: "笔记本",
+                region: "华南",
+                sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+            }, {
+                product: "智能音箱",
+                region: "华东",
+                sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+            }, {
+                product: "智能音箱",
+                region: "华北",
+                sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+            }, {
+                product: "智能音箱",
+                region: "华南",
+                sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+            }]
+            //设置跨浏览器监听            
+            var EventUtil={
+        addHandler:function(element,type,handler){
+            if (element.addEventListener) {
+                element.addEventListener(type,handler,false);
+            }else if (element.attachEvent) {
+                element.attachEvent('on'+type,handler);
+            }else {
+                element['on'+type]=handler;
+            }
+        },
+        removeHandler:function(element,type,handler){
+            if (element.removeEventListener) {
+                element.removeEventListener(type,handler,false);
+            }else if (element.detachEvent) {
+                element.detachEvent('on'+type,handler);
+            }else{
+                element['on'+type]=null;
+            }
+        },
+        getEvent:function(event){
+            return event?event:window.event;
+        },
+        getTarget:function(event){
+            return event.target||event.srcElement;
+        }
+    }
+            //全局变量
+            var regionWra=document.querySelector('#region-radio-wrapper'); 
+            var productWra=document.querySelector('#product-radio-wrapper');                           
+            var tableWra=document.querySelector('#table-wrapper');
+         
+            //生成Checkbox
+            function buildBox(id,name){
+                var wrapper=document.getElementById(id);
+                var quanXuan=document.createElement('input');
+                quanXuan.type="checkbox";
+                quanXuan.setAttribute('checkbox-type','all');
+                quanXuan.value='全选';                
+                quanXuan.innerHTML='全选';
+                //checkbox子选项生成
+                for(x in name){
+                    var childCheck=document.createElement('input');
+                    childCheck.type='checkbox';
+                    childCheck.setAttribute('checkbox-type','child');
+                    childCheck.value=name[x];
+                    if (x==0) {
+                     childCheck.checked=true;   
+                    }
+                    wrapper.appendChild(childCheck);
+                    var checkName=document.createElement('span');    
+                    checkName.innerHTML=name[x];
+                    wrapper.appendChild(checkName);
+                }
+                wrapper.appendChild(quanXuan);
+                var checkName=document.createElement('span');    
+                    checkName.innerHTML='全选';
+                    wrapper.appendChild(checkName);
+                EventUtil.addHandler(wrapper,'click',wrapHandler);
+
+            }
+            function wrapHandler(event){
+                    var event=EventUtil.getEvent(event);
+                    var target=EventUtil.getTarget(event);
+                    if (target.type=='checkbox') {
+                        if (target.getAttribute('checkbox-type')=="all") {
+                            quanHandler();
+                            makeTable();
+                        }else{
+                            cliHandler();
+                            makeTable();
+                        }
+                    }
+                }
+
+            
+            var checkone=['华东','华北','华南'];
+            var checktwo=['手机','笔记本','智能音箱'];
+            buildBox('region-radio-wrapper',checkone);
+             buildBox('product-radio-wrapper',checktwo);
+            function quanHandler(event){
+                var event=EventUtil.getEvent(event);
+                var target=EventUtil.getTarget(event);
+                var fatherWra=target.parentNode;
+                var length=fatherWra.childNodes.length;
+                if(target.checked){
+                     for(var i=0;i < length-1;i++){
+                        if (fatherWra.childNodes[i].type=='checkbox') {
+                        fatherWra.childNodes[i].checked=true;
+                        }
+                    }
+                }
+            }
+            function cliHandler(event){
+                var event=EventUtil.getEvent(event);
+                var target=EventUtil.getTarget(event);
+                var fatherWra=target.parentNode;
+                var length=fatherWra.childNodes.length/2;//4
+                var index=0;
+                for(var i=0;i < length-1;i++){//0,1,2
+                    if (fatherWra.childNodes[2*i].checked==true) {
+                        index += 1;
+                    }
+                }
+                if (index==0) {
+                    target.checked=true;
+                }else if (index==length-1) {
+                    fatherWra.childNodes[2*length-2].checked=true;
+                }else{
+                    fatherWra.childNodes[2*length-2].checked=false;
+                }
+            }
+            //表格数据整理
+            function getData(){               
+                var oneData=new Array();
+                var twoData=new Array();
+                var newData=new Array();
+                var totalData=new Array();
+                for(var i=0;i<regionWra.childNodes.length-2;i++){
+                    if (regionWra.childNodes[i].checked==true) {
+                        oneData.push(regionWra.childNodes[i].value);
+                    }
+                }
+                for(var i=0;i<productWra.childNodes.length-2;i++){
+                    if (productWra.childNodes[i].checked==true) {
+                        twoData.push(productWra.childNodes[i].value);
+                    }
+                } 
+                
+                //装入数组
+                    for(x in twoData){
+                        for(y in oneData){
+                            for(var i=0;i < sourceData.length;i++){
+                                if (sourceData[i].product==twoData[x]&&sourceData[i].region==oneData[y]) {
+                                    var newObj={};
+                                    newObj.product=sourceData[i].product;
+                                    newObj.region=sourceData[i].region;
+                                    newObj.sale=sourceData[i].sale;
+                                    newData.push(newObj);
+                                }
+                            }
+                        }
+                    }                 
+                    totalData.push(oneData);
+                    totalData.push(twoData);
+                    totalData.push(newData);                               
+                return totalData;
+
+            }
+            function makeTable(){
+                delTable();
+                var data=getData();
+                var oneData=data[0];
+                var twoData=data[1];
+                var data=data[2];
+                //判断列顺序
+                
+                if (oneData.length==1&&twoData.length>1) {
+                    var table=document.createElement('table');
+                    var firLine=document.createElement('tr');
+                    var firTh=document.createElement('th');
+                    firTh.innerHTML='地区';
+                    firLine.appendChild(firTh);
+                    var secTh=document.createElement('th');
+                    secTh.innerHTML='商品';
+                    firLine.appendChild(secTh);
+                    for (var i = 1; i <= 12; i++) {
+                        var monthTh=document.createElement('th');
+                        monthTh.innerHTML=i+'月';
+                        firLine.appendChild(monthTh);
+                    }
+                    table.appendChild(firLine);
+                    //表格内容
+                    var firTd=document.createElement('td');
+                        firTd.innerHTML=data[0].region;
+                        firTd.rowSpan=data.length;
+                    for(var x=0;x < data.length;x++){
+                        var conTr=document.createElement('tr');
+                        if (x==0) {
+                            conTr.appendChild(firTd);
+                        }
+                        var secTd=document.createElement('td');
+                        secTd.innerHTML=data[x].product;
+                        conTr.appendChild(secTd);
+                        for (var i = 0; i < data[x].sale.length; i++) {
+                            var monTd=document.createElement('td');
+                            monTd.innerHTML=data[x].sale[i];
+                            conTr.appendChild(monTd);
+                        }
+                        table.appendChild(conTr);
+                    }
+                    tableWra.appendChild(table);
+                }else{//商品在前，地区在后
+                    var table=document.createElement('table');
+                    var firLine=document.createElement('tr');
+                    var firTh=document.createElement('th');
+                    firTh.innerHTML='商品';
+                    firLine.appendChild(firTh);
+                    var secTh=document.createElement('th');
+                    secTh.innerHTML='地区';
+                    firLine.appendChild(secTh);
+                    for (var i = 1; i <= 12; i++) {
+                        var monthTh=document.createElement('th');
+                        monthTh.innerHTML=i+'月';
+                        firLine.appendChild(monthTh);
+                    }
+                    table.appendChild(firLine);
+                    //表格内容
+                    var h=0;
+                            for(var y=0;y < twoData.length;y++){
+                                var firTd=document.createElement('td');
+                                firTd.innerHTML=twoData[y];
+                                firTd.rowSpan=oneData.length;
+                                //第一列商品
+                                for(var x=0;x < oneData.length;x++){
+                                var conTr=document.createElement('tr');
+                                if (x % oneData.length==0) {
+                                conTr.appendChild(firTd);
+                                }
+
+                                var secTd=document.createElement('td');
+                                secTd.innerHTML=oneData[x];
+                                conTr.appendChild(secTd);
+                                for (var i = 0; i < data[h].sale.length; i++) {
+                                    var monTd=document.createElement('td');
+                                    monTd.innerHTML=data[h].sale[i];
+
+                                    conTr.appendChild(monTd);                                    
+                               }
+                               h=h+1;
+                        table.appendChild(conTr);
+                    
+                        }
+                    }                
+                    tableWra.appendChild(table);
+                }
+                
+            }
+            function delTable(){
+                while(tableWra.firstChild){
+                tableWra.removeChild(tableWra.firstChild);
+                    
+                }
+            }
+
+
+        </script>
+    </body>
+</html>
