@@ -1,0 +1,37 @@
+table{
+              border: 1px solid black;
+              border-collapse: collapse;
+              text-align: center;
+            }
+            th,td{
+                width: 88px;
+                height: 40px;
+                border: 1px solid black;
+                
+            }
+            div{
+                margin:10px;
+            }
+            #barWra,#draWra{
+                margin-top: 10px;
+                display: inline-block;
+                border: 1px solid black;
+                width: 500px;
+
+            }
+            #region-radio-wrapper,
+            #product-radio-wrapper{
+                width: 300px;                
+                display: inline-block;
+                margin-bottom: 0;
+
+            }
+            table input{
+                width: 70px;
+                text-align: center;
+            }
+            button{
+                font-size: 8px;
+                width: 35px;
+                height: 18px;            
+            }
