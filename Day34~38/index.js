@@ -702,7 +702,7 @@
                     }else{
                         target.style.cursor='pointer';
                         var bianji=document.createElement('span');
-                        bianji.innerHTML='点击可编辑';
+                        bianji.innerHTML='编辑';
                         bianji.style.color='gray';
                         bianji.style.fontSize='8px';
                         bianji.style.float='right';
@@ -756,8 +756,8 @@
                  
                         target.innerHTML='';
                         var input=document.createElement('input');
-                        input.value=data.slice(0,-5);
-                        originalData=data.slice(0,-5);                  
+                        input.value=data.slice(0,-2);
+                        originalData=data.slice(0,-2);                  
                         
                         target.appendChild(input);
                         input.focus();
