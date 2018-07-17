@@ -756,8 +756,8 @@
                  
                         target.innerHTML='';
                         var input=document.createElement('input');
-                        input.value=data.slice(0,-2);
-                        originalData=data.slice(0,-2);                  
+                        input.value=data.slice(0,-5);
+                        originalData=data.slice(0,-5);                  
                         
                         target.appendChild(input);
                         input.focus();
