@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>餐厅partOne</title>
+	</head>
+	<body>
+		<script>	
+		function Restaurant(obj){
+			this.cash=obj.cash;
+			this.seats=obj.seats;
+			this.staff=obj.staff;
+		}
+		Restaurant.prototype.hire=function(sone){
+				this.staff.push(sone);
+		}
+		Restaurant.prototype.fire=function(sone){
+			var index = this.staff.indexOf(sone);
+			if (index !== -1) {
+				this.staff.splice(index,1);
+			}
+		}
+
+		function Staff(name,salary){
+			//this.id
+			this.name=name;
+			this.salary=salary;
+		}
+		Staff.prototype.work=function(){
+			console.log('完成一次工作');
+		}
+		function Waiter(name,salary){
+			Staff.call(this,name,salary);
+		}
+		Waiter.prototype=Object.create(Staff.prototype);
+		//Waiter.prototype = new Staff(); 
+		Waiter.prototype.constuctor=Waiter;
+		Waiter.prototype.work=function(para){
+			if (Array.isArray(para)) {
+				console.log('记录客人点菜:'+para);
+			}else{
+				console.log('上菜:'+para);
+			}
+		}
+		function Cook(name,salary){
+			Staff.call(this,name,salary);
+		}
+		Cook.prototype=Object.create(Staff.prototype);
+		Cook.prototype.constuctor=Cook;
+		Cook.prototype.work=function(food){
+				console.log('烹饪出菜品'+food);
+		}
+		function Customer(){
+		}
+		Customer.prototype.order=function(food){
+			console.log('点菜'+food);
+		}
+		Customer.prototype.eat=function(){
+			console.log('吃菜');
+		}
+		function Food(name,cost,price){
+			this.name=name;
+			this.cost=cost;
+			this.price=price;
+		}
+		var ifeRestaurant = new Restaurant({
+		    cash: 1000000,
+		    seats: 20,
+		    staff: []
+		});
+
+		var newCook = new Cook("Tony", 10000);
+		ifeRestaurant.hire(newCook);
+
+		console.log(ifeRestaurant.staff);
+
+		ifeRestaurant.fire(newCook);
+		console.log(ifeRestaurant.staff);
+		</script>
+	</body>
