@@ -403,6 +403,7 @@ body {
 #mainright {
 	width: calc(100% - 400px);
 	margin-left: 400px;
+	min-width: 500px;
 	box-sizing: border-box;
 	border: .5px solid #e6e9ec;
 	border-bottom: none;
